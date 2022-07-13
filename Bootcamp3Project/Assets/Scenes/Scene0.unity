@@ -1024,6 +1024,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 6
+=======
+  rotationSpeed: 10
+>>>>>>> Stashed changes
 --- !u!1 &1740798886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,7 +1039,11 @@ GameObject:
   - component: {fileID: 1740798888}
   - component: {fileID: 1740798887}
   m_Layer: 0
+<<<<<<< Updated upstream
   m_Name: Sun Particle System
+=======
+  m_Name: Particle System
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
