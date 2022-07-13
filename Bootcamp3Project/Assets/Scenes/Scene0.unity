@@ -1023,6 +1023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4898ad6f3ff774886b56e48c9e147f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   rotationSpeed: 6
 =======
   rotationSpeed: 10
