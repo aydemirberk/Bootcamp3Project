@@ -6,29 +6,37 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public GameObject meteorPrefab;
     public GameObject panel;
     private float spawnRange = 45;
+    private string clickedPlanetName;
+    public TextMeshProUGUI planetName;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("SpawnMeteor", 5.0f, 5.0f); //spawns a meteor every 5 seconds.
+        
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space)) //Every time pressing space key, spawns a meteor.
-            SpawnMeteor();
+        if (Input.GetKeyDown(KeyCode.Space)) //if space key pressed...
+        {
+            SpawnMeteor();                  //instantiate a meteor.
+        }
+
+
+        if (Input.GetMouseButtonDown(0)) // if left button pressed...
+        {
+            OpenPanel();                //opens UI panel.
+        }
 
     }
 
-
-    //Class for Spawn Meteors
+    //Class for Instantiate Meteors
     void SpawnMeteor()
     {
         Instantiate(meteorPrefab, GenerateSpawnPosition(), meteorPrefab.transform.rotation);
@@ -36,7 +44,7 @@ public class GameManager : MonoBehaviour
     }
 
     
-        // Returns random positions for meteors. Random position coordinates restricted due camera view.
+    // Returns random spawning positions for meteors. Random position coordinates restricted due camera view.
     private Vector3 GenerateSpawnPosition()
     {
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
@@ -48,15 +56,21 @@ public class GameManager : MonoBehaviour
     }
 
 
-
-        // Opens Planet Info Text. Referenced at Button Script
-    public void OpenPanel()
+    // Opens Panel (On Click to Planet)
+    private void OpenPanel()
     {
-        panel.gameObject.SetActive(true);
-        
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit; //Code for detecting click on an object.
+
+            if (Physics.Raycast(ray, out hit)) //if clicked to a game object...
+            {
+                panel.gameObject.SetActive(true);  //opens UI panel
+                clickedPlanetName = hit.transform.gameObject.name;
+            planetName.text = clickedPlanetName;
+            }
     }
 
-        // Closes Planet Info Text. Referenced at Button Script.
+        // Closes Panel. 
     public void ClosePanel()
     {
         panel.gameObject.SetActive(false);
