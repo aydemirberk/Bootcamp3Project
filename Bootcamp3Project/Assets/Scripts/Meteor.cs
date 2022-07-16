@@ -9,7 +9,7 @@ public class Meteor : MonoBehaviour
     private GameObject[] planets;
     private GameObject targetPlanet;
     public ParticleSystem explosionParticle;
-
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -25,32 +25,24 @@ public class Meteor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Vector3 lookDirection = (targetPlanet.transform.position - transform.position).normalized;
-        meteorRb.AddForce(lookDirection * speed);
-
-        
+            Vector3 lookDirection = (targetPlanet.transform.position - transform.position).normalized;
+            meteorRb.AddForce(lookDirection * speed);
 
 
-        //if (transform.position.y < -10)
-        //{
-        //    Destroy(gameObject);
-        //}
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Instantiate(explosionParticle, gameObject.transform.position, gameObject.transform.rotation);
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         Destroy(gameObject);
         
     }
 
     IEnumerator DestroyMeteor()
     {
-        yield return new WaitForSeconds(2);
-        Instantiate(explosionParticle, gameObject.transform.position, gameObject.transform.rotation);
-        Destroy(gameObject);
-        
+            yield return new WaitForSeconds(2);
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            Destroy(gameObject);
 
     } 
 
