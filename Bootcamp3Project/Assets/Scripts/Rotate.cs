@@ -10,7 +10,7 @@ public class Rotate : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // For rotating planets.
         transform.Rotate(new Vector3(0, rotationSpeed, 0) * Time.deltaTime);
@@ -25,4 +25,5 @@ public class Rotate : MonoBehaviour
             Debug.Log($"{gameObject.name} has completed one revolution." );
         }
     }
+
 }

@@ -23,7 +23,7 @@ public class Meteor : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
             Vector3 lookDirection = (targetPlanet.transform.position - transform.position).normalized;
             meteorRb.AddForce(lookDirection * speed);
@@ -40,7 +40,7 @@ public class Meteor : MonoBehaviour
 
     IEnumerator DestroyMeteor()
     {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(4);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             Destroy(gameObject);
 

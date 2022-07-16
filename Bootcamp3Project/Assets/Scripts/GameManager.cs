@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
     private float spawnRange = 45;
     private string clickedPlanetName;
     public TextMeshProUGUI planetName;
+    public bool isGameActive;
 
     // Start is called before the first frame update
     void Start()
     {
+        isGameActive = true;
         InvokeRepeating("SpawnMeteor", 5.0f, 5.0f); //spawns a meteor every 5 seconds.
         
     }
@@ -39,8 +41,8 @@ public class GameManager : MonoBehaviour
     //Class for Instantiate Meteors
     void SpawnMeteor()
     {
-        Instantiate(meteorPrefab, GenerateSpawnPosition(), meteorPrefab.transform.rotation);
 
+         Instantiate(meteorPrefab, GenerateSpawnPosition(), meteorPrefab.transform.rotation);
     }
 
     
@@ -64,9 +66,10 @@ public class GameManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit)) //if clicked to a game object...
             {
+                isGameActive = false;
                 panel.gameObject.SetActive(true);  //opens UI panel
                 clickedPlanetName = hit.transform.gameObject.name;
-            planetName.text = clickedPlanetName;
+                planetName.text = clickedPlanetName;
             }
     }
 
