@@ -9,7 +9,7 @@ public class Meteor : MonoBehaviour
     private GameObject[] planets;
     private GameObject targetPlanet;
     public ParticleSystem explosionParticle;
-    private GameManager gameManager;
+    private UIManager uiManager;
 
     // Start is called before the first frame update
     void Start()
